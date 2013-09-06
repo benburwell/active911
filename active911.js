@@ -1,4 +1,4 @@
-var http = require('http');
+var http = require('https');
 var querystring = require('querystring');
 
 module.exports = function (app_key, api_key) {
@@ -15,12 +15,12 @@ module.exports = function (app_key, api_key) {
 
         // HTTP request configuration
         var options = {
-            host: 'localhost',
-            port: '5000',
-            path: '/api',
+            host: 'access.active911.com',
+            port: '443',
+            path: '/interface/open_api.php',
             method: 'POST',
             headers: {
-                'Content-Length': post.length;
+                'Content-Length': post.length
             }
         };
 
