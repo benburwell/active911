@@ -6,7 +6,9 @@ by Ben Burwell <bburwell1@gmail.com>
 Installation
 ------------
 
-Add `active911` to your dependencies and run `npm install`. You can use it in your project by using
+Installation is simple: `npm install active911`.
+
+You can use it in your project by adding `active911` to your dependencies and running `npm install`. Sample ping:
 
     var active911 = require('active911')('YOUR_APP_KEY', 'YOUR_API_KEY');
     
