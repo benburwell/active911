@@ -1,6 +1,6 @@
 {
     "name": "active911",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "Ben Burwell <hi@benburwell.com>",
     "description": "A simple interface to Active911",
     "tags": [ "active911", "cad" ],
