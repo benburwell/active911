@@ -1,7 +1,9 @@
 Active911 for Node.js
 =====================
 
-by Ben Burwell <bburwell1@gmail.com>
+*Note:* This package was built for an older version of the Active911 API. It will be updated for the new version in the coming weeks.
+
+by Ben Burwell <hi@benburwell.com>
 
 Installation
 ------------
@@ -127,7 +129,7 @@ Example response:
 Contributing
 ------------
 
-Contributions are encouraged. For a list of open issues, see <https://github.com/bburwell/active911/issues>.
+Contributions are encouraged. For a list of open issues, see <https://github.com/benburwell/active911/issues>.
 
 More Information
 ----------------
