@@ -1,21 +1,18 @@
 {
-  "name": "active911",
-  "version": "0.2.0",
-  "author": "Ben Burwell <hi@benburwell.com>",
-  "description": "A simple interface to Active911",
-  "tags": [
-    "active911",
-    "cad"
-  ],
-  "main": "./active911.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/benburwell/active911.git"
-  },
-  "bugs": {
-    "url": "https://github.com/benburwell/active911/issues"
-  },
-  "engines": {
-    "node": ">=0.10"
-  }
+    "name": "active911",
+    "version": "0.1.1",
+    "author": "Ben Burwell <hi@benburwell.com>",
+    "description": "A simple interface to Active911",
+    "tags": [ "active911", "cad" ],
+    "main": "./active911.js",
+    "repository": {
+    	"type": "git",
+    	"url": "https://github.com/benburwell/active911.git"
+    },
+    "bugs": {
+    	"url": "https://github.com/benburwell/active911/issues"
+    },
+    "engines": {
+        "node": ">=0.10"
+    }
 }
