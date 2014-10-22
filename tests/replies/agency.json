@@ -1,0 +1,24 @@
+{
+    "result": "success",
+    "message": {
+        "agency": {
+            "id": "12345",
+            "name": "Test Agency",
+            "address": "123 Main St.",
+            "city": "City",
+            "state": "AZ",
+            "latitude": 40,
+            "longitude": 70,
+            "devices": [
+                {
+                    "id": 1,
+                    "uri": "https://access.active911.com/interface/open_api/api/devices/1"
+                },
+                {
+                    "id": 2,
+                    "uri": "https://access.active911.com/interface/open_api/api/devices/2"
+                }
+            ]
+        }
+    }
+}

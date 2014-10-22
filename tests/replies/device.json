@@ -1,0 +1,19 @@
+{
+    "result": "success",
+    "message": {
+        "device": {
+            "id": 1,
+            "name": "Test Device",
+            "latitude": 41,
+            "longitude": 71,
+            "position_accuracy": "100",
+            "position_timestamp": "2014-01-01 00:00:00",
+            "agencies": [
+                {
+                    "id": "12345",
+                    "uri": "https://access.active911.com/interface/open_api/api/"
+                }
+            ]
+        }
+    }
+}
