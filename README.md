@@ -1,6 +1,8 @@
 Active911 for Node.js
 =====================
 
+[![Build Status](https://travis-ci.org/benburwell/active911.svg)](https://travis-ci.org/benburwell/active911)
+
 by Ben Burwell <ben@benburwell.com>
 
 Installation
