@@ -1,0 +1,22 @@
+{
+  "result": "success",
+  "message": {
+    "resource": {
+      "id": "1",
+      "title": "My Resource",
+      "filename": "resource.pdf",
+      "extension": "pdf",
+      "size": 0,
+      "details": "My resource details",
+      "agency": {
+        "id": "1",
+        "uri": "https://access.active911.com/interface/open_api/api/"
+      },
+      "location": {
+        "id": "1",
+        "uri": "https://access.active911.com/interface/open_api/api/locations/1"
+      }
+    }
+  }
+}
+

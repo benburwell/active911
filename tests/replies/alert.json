@@ -1,0 +1,45 @@
+{
+  "result": "success",
+  "message": {
+    "alert": {
+      "id": "1",
+      "agency": {
+        "id": "1",
+        "uri": "https://access.active911.com/interface/open_api/api/"
+      },
+      "place": "My Place",
+      "address": "123 Main Street",
+      "unit": "",
+      "city": "Allentown",
+      "state": "PA",
+      "latitude": 40,
+      "longitude": -70,
+      "source": "Source",
+      "units": "My Units",
+      "cad_code": "29A1",
+      "priority": "Priority 3",
+      "details": "Medical emergency",
+      "sent": "timestamp",
+      "description": "My description",
+      "pagegroups": [
+        {
+          "title": "Group 1",
+          "prefix": "My Prefix"
+        }
+      ],
+      "map_code": "None",
+      "received": "Received",
+      "cross_street": "Cross Street",
+      "responses": [
+        {
+          "device": {
+            "id": "1",
+            "uri": "https://access.active911.com/interface/open_api/api/devices/1"
+          },
+          "timestamp": "123",
+          "response": "Responding"
+        }
+      ]
+    }
+  }
+}
