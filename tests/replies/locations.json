@@ -1,0 +1,11 @@
+{
+  "result": "success",
+  "message": {
+    "locations": [
+      {
+        "id": "1",
+        "uri": "https://access.active911.com/interface/open_api/api/locations/1"
+      }
+    ]
+  }
+}

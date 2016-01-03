@@ -1,105 +1,138 @@
-require('should');
-require('nock');
-Active911 = require('../lib/active911.js');
+var chai = require('chai');
+var should = chai.should();
+var chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
+var nock = require('nock');
+var Timestamp = require('unix-timestamp');
+var Active911 = require('../lib/active911.js');
 
-var a911;
+var client;
+var deviceResponse = require('./replies/device.json');
+var agencyResponse = require('./replies/agency.json');
+var alertsResponse = require('./replies/alerts.json');
+var alertResponse = require('./replies/alert.json');
+var locationsResponse = require('./replies/locations.json');
+var locationResponse = require('./replies/location.json');
+var resourceResponse = require('./replies/resource.json');
+var errorResponse = require('./replies/error.json');
 
-var testDevicesResponse = require('replies/devices.json');
-var testAgencyResponse = require('replies/agency.json');
-var testDeviceResponse = require('replies/device.json');
-var testErrorResponse = require('replies/error.json');
+var nockPath = function(path, response) {
+  nock('https://access.active911.com')
+    .get('/interface/open_api/api' + path)
+    .reply(200, response);
+};
+
+var nockError = function(path) {
+  nock('https://access.active911.com')
+    .get('/interface/open_api/api' + path)
+    .reply(400, errorResponse);
+};
 
 describe('Active911 API', function() {
+  beforeEach(function(done) {
+    client = new Active911.RefreshClient('CLIENT');
+    nock('https://www.active911.com')
+      .post('/interface/dev/api_access.php')
+      .reply(200, {
+        access_token: 'DUMMY',
+        expiration: Timestamp.now(100)
+      });
+    done();
+  });
 
-    beforeEach(function(done) {
-        a911 = new Active911();
+  describe('#getAgency', function() {
+    it('Should return correct data', function() {
+      nockPath('/', agencyResponse);
+      return client.getAgency().should.eventually.deep.equal(agencyResponse.message.agency);
     });
 
-    describe('#getAgency', function() {
+    it('Should give an error if the API gives an error', function() {
+      nockError('/');
+      return client.getAgency().should.be.rejectedWith(errorResponse.message);
+    });
+  });
 
-        it('Should return correct agency data', function() {
-
-            nock('https://access.active911.com')
-                .get('/interface/open_api/api/')
-                .replyWithFile(200, __dirname + 'replies/agency.json'});
-
-            a911.getAgency(function(err, agency) {
-                should.not.exist(err);
-                agency.should.equal(testAgencyResponse.message.agency);
-            });
-        });
-
-        it('Should give an error if the API gives an error', function() {
-            nock('https://access.active911.com')
-                .get('/interface/open_api/api/')
-                .replyWithFile(400, __dirname + 'replies/error.json');
-
-            a911.getAgency(function(err, agency) {
-                err.should.equal(testErrorResponse.message);
-                should.not.exist(agency);
-            });
-        });
-
+  describe('#getDevice', function() {
+    it('Should return correct data', function() {
+      nockPath('/devices/1', deviceResponse);
+      return client.getDevice(1).should.eventually.deep.equal(deviceResponse.message.device);
     });
 
-    describe('#getDevices', function() {
-        it('Should return correct device data', function() {
+    it('Should give an error if the API gives an error', function() {
+      nockError('/devices/1');
+      return client.getDevice(1).should.be.rejectedWith(errorResponse.message);
+    });
+  });
 
-            nock('https://access.active911.com')
-                .get('/interface/open_api/api/')
-                .replyWithFile(400, __dirname + 'replies/agency.json');
-
-            a911.getDevices(function(err, devices) {
-                should.not.exist(err);
-                devices.should.equal(testDevicesResponse.message.devices);
-            });
-        });
-
-        it('Should give an error if the API gives an error', function() {
-            nock('https://access.active911.com')
-                .get('/interface/open_api/api/')
-                .replyWithFile(400, __dirname + 'replies/error.json');
-
-            a911.getDevices(function(err, devices) {
-                err.should.equal(testErrorResponse.message);
-                should.not.exist(devices);
-            });
-        });
+  describe('#getAlerts', function() {
+    it('Should return correct data', function() {
+      nockPath('/alerts', alertsResponse);
+      return client.getAlerts().should.eventually.deep.equal(alertsResponse.message.alerts);
     });
 
-    describe('#getDevice', function() {
-        it('Should return correct device data (String id)', function() {
-            nock('https://access.active911.com')
-                .get('/interface/open_api/api/devices/1')
-                .replyWithFile(200, __dirname + 'replies/device.json');
+    it('Should give an error if the API gives an error', function() {
+      nockError('/alerts');
+      return client.getAlerts().should.be.rejectedWith(errorResponse.message);
+    });
+  });
 
-            a911.getDevice('1', function(err, device) {
-                should.not.exist(err);
-                device.should.equal(testDeviceResponse.message.device);
-            });
-        });
-
-        it('Should return correct device data (Number id)', function() {
-            nock('https://access.active911.com')
-                .get('/interface/open_api/api/devices/1')
-                .replyWithFile(200, __dirname + 'replies/device.json');
-
-            a911.getDevice(1, function(err, device) {
-                should.not.exist(err);
-                device.should.equal(testDeviceResponse.message.device);
-            });
-        });
-
-        it('Should give an error if the API gives an error', function() {
-            nock('https://access.active911.com')
-                .get('/interface/open_api/api/devices/1')
-                .replyWithFile(400, __dirname + 'replies/error.json');
-
-            a911.getDevice(1, function(err, device) {
-                err.should.equal(testErrorResponse.message);
-                should.not.exist(device);
-            });
-        });
+  describe('#getDeviceAlerts', function() {
+    it('Should return correct data', function() {
+      nockPath('/devices/1/alerts', alertsResponse);
+      return client.getDeviceAlerts(1).should.eventually.deep.equal(alertsResponse.message.alerts);
     });
 
+    it('Should give an error if the API gives an error', function() {
+      nockError('/devices/1/alerts');
+      return client.getDeviceAlerts(1).should.be.rejectedWith(errorResponse.message);
+    });
+  });
+
+  describe('#getAlert', function() {
+    it('Should return correct data', function() {
+      nockPath('/alerts/1', alertResponse);
+      return client.getAlert(1).should.eventually.deep.equal(alertResponse.message.alert);
+    });
+
+    it('Should give an error if the API gives an error', function() {
+      nockError('/alerts/1');
+      return client.getAlert(1).should.be.rejectedWith(errorResponse.message);
+    });
+  });
+
+  describe('#getLocations', function() {
+    it('Should return correct data', function() {
+      nockPath('/locations', locationsResponse);
+      return client.getLocations().should.eventually.deep.equal(locationsResponse.message.locations);
+    });
+
+    it('Should give an error if the API gives an error', function() {
+      nockError('/locations');
+      return client.getLocations().should.be.rejectedWith(errorResponse.message);
+    });
+  });
+
+  describe('#getLocation', function() {
+    it('Should return correct data', function() {
+      nockPath('/locations/1', locationResponse);
+      return client.getLocation(1).should.eventually.deep.equal(locationResponse.message.location);
+    });
+
+    it('Should give an error if the API gives an error', function() {
+      nockError('/locations/1');
+      return client.getLocation(1).should.be.rejectedWith(errorResponse.message);
+    });
+  });
+
+  describe('#getResource', function() {
+    it('Should return correct data', function() {
+      nockPath('/resources/1', resourceResponse);
+      return client.getResource(1).should.eventually.deep.equal(resourceResponse.message.resource);
+    });
+
+    it('Should give an error if the API gives an error', function() {
+      nockError('/resources/1');
+      return client.getResource(1).should.be.rejectedWith(errorResponse.message);
+    });
+  });
 });

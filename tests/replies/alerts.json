@@ -1,0 +1,15 @@
+{
+  "result": "success",
+  "message": {
+    "alerts": [
+      {
+        "id": 1,
+        "uri": "https://access.active911.com/interface/open_api/api/alerts/1"
+      },
+      {
+        "id": 2,
+        "uri": "https://access.active911.com/interface/open_api/api/alerts/2"
+      }
+    ]
+  }
+}

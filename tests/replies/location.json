@@ -1,0 +1,22 @@
+{
+  "result": "success",
+  "message": {
+    "location": {
+      "id": "1",
+      "name": "My Resource",
+      "description": "My Description",
+      "icon_id": "1",
+      "icon_color": "blue",
+      "latitude": 40,
+      "longitude": -70,
+      "location_type": "Hydrant",
+      "resources": [
+        {
+          "id": "1",
+          "uri": "https://access.active911.com/interface/open_api/api/resources/1"
+        }
+      ]
+    }
+  }
+}
+

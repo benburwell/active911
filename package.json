@@ -1,33 +1,40 @@
 {
-    "name": "active911",
-    "version": "0.1.1",
-    "author": "Ben Burwell <hi@benburwell.com>",
-    "description": "A simple interface to Active911",
-    "tags": [ "active911", "cad", "fire", "ems", "dispatching" ],
-    "main": "./lib/active911.js",
-    "dependencies": {
-        "oauth": ">=0.9.11"
-    },
-    "devDependencies": {
-        "mocha": "latest",
-        "nock": "latest",
-        "should": "latest",
-        "grunt-mocha-test": "latest",
-        "grunt": "latest",
-        "grunt-cli": "latest",
-        "grunt-contrib-jshint": "latest"
-    },
-    "scripts": {
-        "test": "grunt --verbose"
-    },
-    "repository": {
-    	"type": "git",
-    	"url": "https://github.com/benburwell/active911.git"
-    },
-    "bugs": {
-    	"url": "https://github.com/benburwell/active911/issues"
-    },
-    "engines": {
-        "node": ">=0.10"
-    }
+  "name": "active911",
+  "version": "0.2.0",
+  "description": "A simple client for the Active911 API",
+  "main": "./lib/active911.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benburwell/active911.git"
+  },
+  "keywords": [
+    "active911",
+    "client",
+    "ems",
+    "fire",
+    "response",
+    "api"
+  ],
+  "author": "Ben Burwell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benburwell/active911/issues"
+  },
+  "homepage": "https://github.com/benburwell/active911#readme",
+  "dependencies": {
+    "request": "^2.67.0",
+    "unix-timestamp": "^0.2.0"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.1.0",
+    "mocha": "^2.3.4",
+    "nock": "^3.4.0"
+  }
 }
