@@ -1,7 +1,15 @@
 language: node_js
 node_js:
-    - "0.12"
-    - "4.0"
-    - "4.1"
-    - "4.2"
-
+- '0.12'
+- '4.0'
+- '4.1'
+- '4.2'
+deploy:
+  provider: npm
+  email: ben@benburwell.com
+  api_key:
+    secure: K80NCqYeh/qe9vJXRaXim/C+FJxdbsmtO0exlltRyco8a63cekatzomIRFsVEu6wVxd9vXNyv2ia6hk7nXomYNM+17nFUvG2LKi8o772CpH0b4z/B6Y4YLm1yHlg6fKe+KV6SZkqeNrJnEgJwJ/iMtVSnOfacJQigkuOpz4nhwI=
+  on:
+    branch: master
+    tags: true
+    repo: benburwell/active911
