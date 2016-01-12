@@ -17,7 +17,7 @@ var resourceResponse = require('./replies/resource.json');
 var errorResponse = require('./replies/error.json');
 
 var nockPath = function(path, response) {
-  nock('https://access.active911.com')
+  return nock('https://access.active911.com')
     .get('/interface/open_api/api' + path)
     .reply(200, response);
 };
@@ -133,6 +133,29 @@ describe('Active911 API', function() {
     it('Should give an error if the API gives an error', function() {
       nockError('/resources/1');
       return client.getResource(1).should.be.rejectedWith(errorResponse.message);
+    });
+  });
+});
+
+describe('Alert filtering', function() {
+  it('should request alerts filtered by alert_days', function(done) {
+    var n = nockPath('/alerts?alert_days=1', alertsResponse);
+    client.getAlerts({ alert_days: 1}).then(function() {
+      n.isDone().should.be.true;
+      done();
+    }).catch(function(err) {
+      false.should.be.true;
+      done();
+    });
+  });
+  it('should request alerts filtered by alert_minutes', function(done) {
+    var n = nockPath('/alerts?alert_minutes=1', alertsResponse);
+    client.getAlerts({ alert_minutes: 1}).then(function() {
+      n.isDone().should.be.true;
+      done();
+    }).catch(function(err) {
+      false.should.be.true;
+      done();
     });
   });
 });

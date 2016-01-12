@@ -32,7 +32,9 @@ The following public API methods are available:
 
 * `getAgency()`
 * `getDevice(device_id)`
-* `getAlerts()`
+* `getAlerts({ alert_days: 1, alert_minutes: 30 })`, where the object parameter
+  is optional. You should not use both keys; if `alert_minutes` is provided, it
+  will override `alert_days` as documented [on the wiki](http://wiki.active911.com/wiki/index.php/Accessing_the_API#Alerts).
 * `getDeviceAlerts(device_id)`
 * `getAlert(alert_id)`
 * `getLocations()`
