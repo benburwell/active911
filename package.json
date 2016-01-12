@@ -1,6 +1,6 @@
 {
   "name": "active911",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "A simple client for the Active911 API",
   "main": "./lib/active911.js",
   "scripts": {
