@@ -4,9 +4,9 @@ declare class RefreshClient {
     private _accessToken;
     private _accessTokenExpiration;
     constructor(refreshString: string);
-    private _doRequest;
-    private _getAccessToken;
     private _refreshAccessToken;
+    private _getAccessToken;
+    private _doRequest;
     getAgency(): Promise<Agency>;
     getDevice(id: string): Promise<Device>;
     getAlerts(options?: {
