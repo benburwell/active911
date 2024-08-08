@@ -1,8 +1,9 @@
 {
   "name": "active911",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.1",
   "description": "A simple client for the Active911 API",
   "main": "./build/src/active911.js",
+  "types": "./build/src/types.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/benburwell/active911.git"
